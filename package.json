@@ -1,0 +1,11 @@
+{
+  "name": "pokerKata",
+  "version": "1.0.0",
+  "description": "Kata Exercise to find which hand wins in a poker match",
+  "main": "src/index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Francesco Spagnolo",
+    "email": "francesco.spagnolo95@gmail.com"
+  }
+}
