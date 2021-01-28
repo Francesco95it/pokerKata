@@ -9,6 +9,7 @@
     "name": "Francesco Spagnolo",
     "email": "francesco.spagnolo95@gmail.com"
   },
+  "dependencies": {},
   "devDependencies": {
     "mocha": "^8.2.1",
     "nodemon": "^2.0.7"
@@ -16,6 +17,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "mocha"
+    "test": "mocha",
+    "testdev": "mocha --watch"
   }
 }

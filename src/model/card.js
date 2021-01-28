@@ -17,7 +17,7 @@ const figureValues = {
 export default function Card (figure, suit) {
 	this.figure = figure || '';
 	this.suit = suit || '';
-	this.stringValue = figure + suit;
+	this.stringValue = this.figure + this.suit;
 
 	this.fromString = (figureSuit) => {
 		this.figure = figureSuit[0];
