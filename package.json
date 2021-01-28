@@ -4,6 +4,7 @@
   "description": "Kata Exercise to find which hand wins in a poker match",
   "main": "src/index.js",
   "license": "MIT",
+  "type": "module",
   "author": {
     "name": "Francesco Spagnolo",
     "email": "francesco.spagnolo95@gmail.com"
