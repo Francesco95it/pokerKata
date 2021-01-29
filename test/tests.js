@@ -1,6 +1,8 @@
 import Card from '../src/model/card.js';
 import Hand from '../src/model/hand.js';
+import Player from '../src/model/player.js';
 import assert from 'assert';
+import Match from '../src/model/match.js';
 
 describe('Card', function () {
 	describe('Create card from AH', function () {
@@ -100,6 +102,42 @@ describe('Hand', function () {
 			assert.strictEqual(handOne.hasStraightFlush().length, 5);
 			assert.strictEqual(handTwo.hasStraightFlush().length, 5);
 			assert.strictEqual(handThree.hasStraightFlush(), null);
+		})
+	})
+})
+
+describe('Player', function () {
+	describe('Get score for player', function () {
+		it('Should return the correct hand name based on players cards', function () {
+			const playerOne = new Player("Francesco", ["2H", "3H", "AH", "8H", "4H"]);
+			const playerTwo = new Player("Mario", ["2D", "3H", "4C", "5S", "6H"]);
+			assert.strictEqual(playerOne.getBestHandScore().key, "flush");
+			assert.strictEqual(playerTwo.getBestHandScore().key, "straight");
+			assert.strictEqual(playerOne.getBestHandScore().points > playerTwo.getBestHandScore().points, true);
+		})
+	})
+})
+
+describe('Match', function () {
+	describe('Get the match winner', function () {
+		it('Should return the correct winner without having a tie', function () {
+			// Flush vs Straight
+			const playerOne = new Player("Francesco", ["2H", "3H", "AH", "8H", "4H"]);
+			const playerTwo = new Player("Mario", ["2D", "3H", "4C", "5S", "6H"]);
+			const matchOne = new Match([playerOne, playerTwo]);
+			assert.strictEqual(matchOne.computeMatch().player.name, "Francesco");
+
+			// Straight vs Tris
+			const playerThree = new Player("Francesco", ["2D", "3H", "4C", "5S", "6H"]);
+			const playerFour = new Player("Mario", ["3H", "3C", "3S", "8H", "4H"]);
+			const matchTwo = new Match([playerThree, playerFour]);
+			assert.strictEqual(matchTwo.computeMatch().player.name, "Francesco");
+
+			// High Card vs Tris
+			const playerFive = new Player("Mario", ["2D", "JH", "4C", "5S", "6H"]);
+			const playerSix = new Player("Francesco", ["3H", "3C", "3S", "8H", "4H"]);
+			const matchThree = new Match([playerFive, playerSix]);
+			assert.strictEqual(matchThree.computeMatch().player.name, "Francesco");
 		})
 	})
 })

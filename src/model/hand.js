@@ -71,7 +71,11 @@ export default function Hand (cardsArray) {
 	this.hasFullHouse = () => {
 		const trisCards = this.helperFn.getTris(this.cards);
 		if (trisCards) {
-			const pairCards = this.helperFn.getPairs(this.cards.filter(card => trisCards.map(trisCard => trisCard.stringValue).indexOf(card.stringValue)===-1));
+			const pairCards = this.helperFn
+					.getPairs(this.cards
+						.filter(card => trisCards
+							.map(trisCard => trisCard.stringValue)
+							.indexOf(card.stringValue)===-1));
 			if (pairCards) {
 				return {
 					tris: trisCards,
@@ -94,4 +98,5 @@ export default function Hand (cardsArray) {
 	this.hasStraightFlush = () => {
 		return this.hasStraight() && this.hasFlush() ? this.cards : null;
 	}
+
 }
