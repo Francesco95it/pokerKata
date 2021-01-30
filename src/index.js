@@ -1,9 +1,34 @@
-import Card from './model/card.js';
+import Match from './model/match.js';
 import Player from './model/player.js';
+import fs from 'fs';
+import readline from 'readline';
+import constants from './constants.js'
 
-console.log("Started");
+console.log("Poker Kata Started");
 
-const playerFive = new Player("Mario", ["2D", "JH", "4C", "5S", "6H"]);
-const playerSix = new Player("Francesco", ["3H", "3C", "3S", "8H", "4H"]);
-console.log(playerFive.getBestHandScore().player.name + ': ' + playerFive.getBestHandScore().key + ': ' + playerFive.getBestHandScore().points)
-console.log(playerSix.getBestHandScore().player.name + ': ' + playerSix.getBestHandScore().key + ': ' + playerSix.getBestHandScore().points)
+const playerOne = new Player("Mario", ["TC", "3C", "3H", "TH", "TD"]);
+const playerTwo = new Player("Francesco", ["KC", "7C", "7H", "KH", "KD"]);
+const match = new Match([playerOne, playerTwo]);
+
+const lineReader = readline.createInterface({
+	input: fs.createReadStream('./matches.txt')
+});
+
+const lineToMatch = (line) => {
+
+	const playersAsStrings = line.split("  "),
+		players = [];
+		
+	for (const stringPlayer of playersAsStrings) {
+		const [playerName, card1, card2, card3, card4, card5] = stringPlayer.replace(':', '').split(' ');
+		players.push(new Player(
+			playerName, [card1, card2, card3, card4, card5]
+		))
+	}
+	
+	new Match(players).computeMatch(true);
+}
+
+lineReader.on('line', function (line) {
+	lineToMatch(line);
+});

@@ -10,11 +10,11 @@ export default function Hand (cardsArray) {
 	
 	this.helperFn = {
 		getHighestCard: (cardsArray) => {
-			return cardsArray.reduce((cardOne, cardTwo) => {
-				if (cardOne.getFigureValue() > cardTwo.getFigureValue()) {
-					return cardOne;
+			return cardsArray.reduce((higherCard, currentCard) => {
+				if (higherCard.getFigureValue() > currentCard.getFigureValue()) {
+					return higherCard;
 				}
-				return cardTwo;
+				return currentCard;
 			})
 		},
 		getPairs: (cardsArray) => {

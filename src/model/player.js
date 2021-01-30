@@ -1,4 +1,5 @@
 import Hand from "./hand.js";
+import Card from "./card.js";
 import constants from '../constants.js'
 
 function Score(key, scoringCards, points, player) {
@@ -10,7 +11,12 @@ function Score(key, scoringCards, points, player) {
 
 export default function Player(name, cards) {
 	this.name = name || 'Mario';
-	this.cards = cards || [];
+	this.cards = cards ? cards.map(card => {
+		if (!(card instanceof Card)) {
+			return new Card().fromString(card)
+		}
+		return card;
+	}) : [];
 	this.hand = new Hand(this.cards);
 
 	this.getBestHandScore = () => {

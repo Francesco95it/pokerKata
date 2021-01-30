@@ -24,5 +24,37 @@ export default {
 		"Q": 12,
 		"K": 13,
 		"A": 14,
+	},
+	combinationsNames: {
+		"highestCard": "high card",
+		"pair": "pair",
+		"twoPairs": "two pairs",
+		"tris": "tris",
+		"straight": "straight",
+		"flush": "flush",
+		"fullHouse": "full house",
+		"poker": "four of a kind",
+		"straightFlush": "straight flush",
+	},
+	figureNames: {
+		"2": "2",
+		"3": "3",
+		"4": "4",
+		"5": "5",
+		"6": "6",
+		"7": "7",
+		"8": "8",
+		"9": "9",
+		"T": "10",
+		"J": "Jack",
+		"Q": "Queen",
+		"K": "King",
+		"A": "Ace",
+	},
+	suitNames: {
+		"C": "clubs",
+		"D": "diamonds",
+		"H": "hearts",
+		"S": "spades"
 	}
 }

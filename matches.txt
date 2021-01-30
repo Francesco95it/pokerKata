@@ -1,0 +1,10 @@
+Black: 2H 3D 5S 9C KD  White: 2C 3H 4S 8C AH
+Black: 2H 4S 4C 2D 4H  White: 2S 8S AS QS 3S
+Black: 2H 3D 5S 9C KD  White: 2C 3H 4S 8C KH
+Black: 2H 3D 5S 9C KD  White: 2D 3H 5C 9S KH
+Francesco: JD JH 2C 2S 6H  Carlos: 6H 6C 3S 3H 4H
+Alessandro: AH KC JS QH TH  Alonso: 7D 8H TC 9S JH
+Charles: AC KC 3C QC 4C  Lorenzo: 7H 8H 3H TH JH
+Aldo: KC JC JH JS JD  Mario: 4C 4H 4D 4S TD
+Matteo: TD KD QD AD JD  Angelo: JC 8C TC 9C 7C
+Filippo: 2H 8C 3S 8H 4H  Dario: 6D 2H 4C 5S 6H

@@ -139,5 +139,113 @@ describe('Match', function () {
 			const matchThree = new Match([playerFive, playerSix]);
 			assert.strictEqual(matchThree.computeMatch().player.name, "Francesco");
 		})
+		it('Should return the correct winner having a tie of higher cards', function () {
+			// High Card J vs A 
+			const playerOne = new Player("Mario", ["2D", "JH", "4C", "5S", "6H"]);
+			const playerTwo = new Player("Francesco", ["7H", "AC", "3S", "8H", "4H"]);
+			const match = new Match([playerOne, playerTwo]);
+			assert.strictEqual(match.computeMatch().player.name, "Francesco");
+			// High Card A - J vs A - K 
+			const playerThree = new Player("Mario", ["2D", "JH", "AC", "5S", "6H"]);
+			const playerFour = new Player("Francesco", ["7H", "AC", "KS", "8H", "4H"]);
+			const matchTwo = new Match([playerThree, playerFour]);
+			assert.strictEqual(matchTwo.computeMatch().player.name, "Francesco");
+		})
+		it('Should return the correct winner having a tie of pairs', function () {
+			// Pair 6 vs Pair of 8 
+			const playerOne = new Player("Mario", ["6D", "2H", "4C", "5S", "6H"]);
+			const playerTwo = new Player("Francesco", ["2H", "8C", "3S", "8H", "4H"]);
+			const match = new Match([playerOne, playerTwo]);
+			assert.strictEqual(match.computeMatch().player.name, "Francesco");
+			// Pairs of 2 - Wins High card 8 
+			const playerThree = new Player("Mario", ["2D", "2H", "4C", "5S", "6H"]);
+			const playerFour = new Player("Francesco", ["2H", "2C", "3S", "8H", "4H"]);
+			const matchTwo = new Match([playerThree, playerFour]);
+			assert.strictEqual(matchTwo.computeMatch().player.name, "Francesco");
+			// Pairs of J - same A - wins K 
+			const playerFive = new Player("Mario", ["JD", "JH", "AC", "5S", "6H"]);
+			const playerSix = new Player("Francesco", ["JH", "AC", "KS", "JH", "4H"]);
+			const matchThree = new Match([playerFive, playerSix]);
+			assert.strictEqual(matchThree.computeMatch().player.name, "Francesco");
+		})
+		it('Should return the correct winner having a tie of two pairs', function () {
+			// Pair of J and 2 vs Pair of 6 and 3 
+			const playerOne = new Player("Francesco", ["JD", "JH", "2C", "2S", "6H"]);
+			const playerTwo = new Player("Mario", ["6H", "6C", "3S", "3H", "4H"]);
+			const match = new Match([playerOne, playerTwo]);
+			assert.strictEqual(match.computeMatch().player.name, "Francesco");
+			// Two Pairs of J and 2 - wins K 
+			const playerThree = new Player("Mario", ["JD", "JH", "2C", "2S", "6H"]);
+			const playerFour = new Player("Francesco", ["JC", "KC", "2S", "JH", "2H"]);
+			const matchTwo = new Match([playerThree, playerFour]);
+			assert.strictEqual(matchTwo.computeMatch().player.name, "Francesco");
+			// Pair of J and 5 vs Pair of J and 9 
+			const playerFive = new Player("Mario", ["JD", "JH", "5C", "5S", "6H"]);
+			const playerSix = new Player("Francesco", ["JH", "JC", "9S", "9H", "4H"]);
+			const matchThree = new Match([playerFive, playerSix]);
+			assert.strictEqual(matchThree.computeMatch().player.name, "Francesco");
+		})
+		it('Should return the correct winner having a tie of two tris', function () {
+			// Tris of 3 vs Tris of J 
+			const playerOne = new Player("Francesco", ["JD", "JH", "2C", "2S", "6H"]);
+			const playerTwo = new Player("Mario", ["6H", "6C", "3S", "3H", "4H"]);
+			const match = new Match([playerOne, playerTwo]);
+			assert.strictEqual(match.computeMatch().player.name, "Francesco");
+			// Two Tris of J - wins K high card 
+			const playerThree = new Player("Mario", ["JD", "JH", "JC", "2S", "6H"]);
+			const playerFour = new Player("Francesco", ["JC", "KC", "JS", "JH", "2H"]);
+			const matchTwo = new Match([playerThree, playerFour]);
+			assert.strictEqual(matchTwo.computeMatch().player.name, "Francesco");
+		})
+		it('Should return the correct winner having a tie of straights', function () {
+			// Straight to J vs Straight to A
+			const playerOne = new Player("Mario", ["7D", "8H", "TC", "9S", "JH"]);
+			const playerTwo = new Player("Francesco", ["AH", "KC", "JS", "QH", "TH"]);
+			const match = new Match([playerOne, playerTwo]);
+			assert.strictEqual(match.computeMatch().player.name, "Francesco");
+			// Straight to A vs Straight to J
+			const matchTwo = new Match([playerTwo, playerOne]);
+			assert.strictEqual(matchTwo.computeMatch().player.name, "Francesco");
+		})
+		it('Should return the correct winner having a tie of flushes', function () {
+			// Flush of H with high J vs of C with high A
+			const playerOne = new Player("Mario", ["7H", "8H", "3H", "TH", "JH"]);
+			const playerTwo = new Player("Francesco", ["AC", "KC", "3C", "QC", "4C"]);
+			const match = new Match([playerOne, playerTwo]);
+			assert.strictEqual(match.computeMatch().player.name, "Francesco");
+			// Flush of H with high A vs of C with high J
+			const matchTwo = new Match([playerTwo, playerOne]);
+			assert.strictEqual(matchTwo.computeMatch().player.name, "Francesco");
+		})
+		it('Should return the correct winner having a tie of full house', function () {
+			// Full house of T over 3 vs K over 7
+			const playerOne = new Player("Mario", ["TC", "3C", "3H", "TH", "TD"]);
+			const playerTwo = new Player("Francesco", ["KC", "7C", "7H", "KH", "KD"]);
+			const match = new Match([playerOne, playerTwo]);
+			assert.strictEqual(match.computeMatch().player.name, "Francesco");
+			// Full house of K over 7 vs T over 3
+			const matchTwo = new Match([playerTwo, playerOne]);
+			assert.strictEqual(matchTwo.computeMatch().player.name, "Francesco");
+		})
+		it('Should return the correct winner having a tie of pokers', function () {
+			// Poker of 4 vs Poker of J
+			const playerOne = new Player("Mario", ["4C", "4H", "4D", "4S", "TD"]);
+			const playerTwo = new Player("Francesco", ["KC", "JC", "JH", "JS", "JD"]);
+			const match = new Match([playerOne, playerTwo]);
+			assert.strictEqual(match.computeMatch().player.name, "Francesco");
+			// Poker of J vs Poker of 4
+			const matchTwo = new Match([playerTwo, playerOne]);
+			assert.strictEqual(matchTwo.computeMatch().player.name, "Francesco");
+		})
+		it('Should return the correct winner having a tie of straight flushes', function () {
+			// Straight flush of C to J vs D to A
+			const playerOne = new Player("Mario", ["JC", "8C", "TC", "9C", "7C"]);
+			const playerTwo = new Player("Francesco", ["TD", "KD", "QD", "AD", "JD"]);
+			const match = new Match([playerOne, playerTwo]);
+			assert.strictEqual(match.computeMatch().player.name, "Francesco");
+			// Straight flush of D to A vs C to J
+			const matchTwo = new Match([playerTwo, playerOne]);
+			assert.strictEqual(matchTwo.computeMatch().player.name, "Francesco");
+		})
 	})
 })
