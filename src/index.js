@@ -6,10 +6,6 @@ import constants from './constants.js'
 
 console.log("Poker Kata Started");
 
-const playerOne = new Player("Mario", ["TC", "3C", "3H", "TH", "TD"]);
-const playerTwo = new Player("Francesco", ["KC", "7C", "7H", "KH", "KD"]);
-const match = new Match([playerOne, playerTwo]);
-
 const lineReader = readline.createInterface({
 	input: fs.createReadStream('./matches.txt')
 });

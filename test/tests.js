@@ -1,8 +1,8 @@
 import Card from '../src/model/card.js';
 import Hand from '../src/model/hand.js';
 import Player from '../src/model/player.js';
-import assert from 'assert';
 import Match from '../src/model/match.js';
+import assert from 'assert';
 
 describe('Card', function () {
 	describe('Create card from AH', function () {
@@ -113,6 +113,8 @@ describe('Player', function () {
 			const playerTwo = new Player("Mario", ["2D", "3H", "4C", "5S", "6H"]);
 			assert.strictEqual(playerOne.getBestHandScore().key, "flush");
 			assert.strictEqual(playerTwo.getBestHandScore().key, "straight");
+			assert.strictEqual(playerOne.getBestHandScore().points, 6);
+			assert.strictEqual(playerTwo.getBestHandScore().points, 5);
 			assert.strictEqual(playerOne.getBestHandScore().points > playerTwo.getBestHandScore().points, true);
 		})
 	})
